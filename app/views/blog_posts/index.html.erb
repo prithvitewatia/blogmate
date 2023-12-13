@@ -1,0 +1,16 @@
+<div class="bg-gray-100 p-8">
+  <h1 class="text-4xl font-extrabold text-indigo-700 mb-6">Blog Posts</h1>
+  <p class="text-gray-600 mb-4">Our blog has <%= BlogPost.public_count %> articles and counting!</p>
+  <p><%= link_to 'Add a new post', new_blog_post_path, class: 'text-indigo-600 hover:underline' %></p>
+
+  <ul class="mt-6">
+    <% @blog_posts.each do |blog_post| %>
+      <% unless blog_post.archived? %>
+        <li class="bg-white rounded-lg shadow-md p-6 mb-4">
+          <h2 class="text-2xl font-bold text-indigo-700 mb-2"><%= link_to blog_post.title, blog_post, class: 'hover:underline' %></h2>
+          <p class="text-gray-700"><%= blog_post.body %></p>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

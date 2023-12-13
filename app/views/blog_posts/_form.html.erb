@@ -1,0 +1,26 @@
+<%= form_with model: blog_post do |form| %>
+  <div>
+    <%= form.label :status %><br>
+    <%= form.select :status, Visible::VALID_STATUSES, selected: blog_post.status || 'public' %>
+  </div>
+
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% blog_post.errors.full_messages_for(:title).each do |message| %>
+      <small><%= message %></small>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %><br>
+    <% blog_post.errors.full_messages_for(:body).each do |message| %>
+      <small><%= message %></small>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
