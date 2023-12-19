@@ -1,0 +1,45 @@
+<div class="max-w-md mx-auto mt-8">
+  <h2 class="text-2xl font-semibold mb-6">Hi <%= current_user.username %></h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-4" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="space-y-2">
+      <%= f.label :email, class: "block text-sm font-medium text-gray-600" %>
+      <%= f.email_field :email, class: "border p-2 w-full", autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div class="text-gray-500">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="space-y-2">
+      <%= f.label :password, class: "block text-sm font-medium text-gray-600" %>
+      <span class="text-xs text-gray-500"><i>(leave blank if you don't want to change it)</i></span>
+      <%= f.password_field :password, class: "border p-2 w-full", autocomplete: "new-password" %>
+      <% if @minimum_password_length %>
+        <p class="text-xs text-gray-500"><em><%= @minimum_password_length %> characters minimum</em></p>
+      <% end %>
+    </div>
+
+    <div class="space-y-2">
+      <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-600" %>
+      <%= f.password_field :password_confirmation, class: "border p-2 w-full", autocomplete: "new-password" %>
+    </div>
+
+    <div class="space-y-2">
+      <%= f.label :current_password, class: "block text-sm font-medium text-gray-600" %>
+      <span class="text-xs text-gray-500"><i>(we need your current password to confirm your changes)</i></span>
+      <%= f.password_field :current_password, class: "border p-2 w-full", autocomplete: "current-password" %>
+    </div>
+
+    <div class="mt-6">
+      <%= f.submit "Update", class: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" %>
+    </div>
+  <% end %>
+
+  <h3 class="text-xl font-semibold mt-6">Cancel my account</h3>
+  <div class="text-gray-600">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "text-red-500 hover:underline" %></div>
+
+  <%= link_to "Back", :back, class: "text-blue-500 hover:underline mt-4 block" %>
+</div>
