@@ -1,1 +1,1 @@
-web: ./bin/dev
+web: bundle exec foreman start -p $PORT
