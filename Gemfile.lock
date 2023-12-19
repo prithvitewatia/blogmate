@@ -235,6 +235,8 @@ GEM
       railties (>= 6.0.0)
     thor (1.3.0)
     timeout (0.4.1)
+    toastr-rails (1.0.3)
+      railties (>= 3.1.0)
     turbo-rails (1.5.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -276,6 +278,7 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   stimulus-rails
   tailwindcss-rails (~> 2.0)
+  toastr-rails (~> 1.0)
   turbo-rails
   tzinfo-data
   web-console

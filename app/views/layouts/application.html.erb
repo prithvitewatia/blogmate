@@ -9,18 +9,47 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="https://kit.fontawesome.com/4687413802.js" crossorigin="anonymous"></script>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if user_signed_in? %>
-      <%= link_to 'Profile', edit_user_registration_path %>
-      <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
-    <% else  %>
-      <%= link_to 'Login', new_user_session_path %>
-      <%= link_to 'Sign up', new_user_registration_path %>
-    <% end %>
+  <body class="bg-gray-100">
+  <nav class="bg-blue-500 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <div>
+        <%= link_to 'BlogMate', root_path,
+                    class: 'self-center text-2xl font-semibold whitespace-nowrap dark:text-white' %>
+      </div>
+      <div class="flex">
+        <% if user_signed_in? %>
+          <div class="flex flex-col items-center mr-4">
+            <div>
+              <i class="fa-solid fa-plus fa-2xl mt-4" style="color: #eeecf3;"></i>
+            </div>
+            <div>
+              <%= link_to 'New', new_blog_post_path, class: 'text-white text-xs' %>
+            </div>
+          </div>
+          <div>
+            <%= link_to image_tag("user.png",
+                                  alt: :user,
+                                  class: 'rounded-full h-10 w-10 mr-4'),
+                        edit_user_registration_path %>
+          </div>
+          <div><%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'bg-red-500 text-white py-2 px-4 rounded' %></div>
+        <% else  %>
+          <div><%= link_to 'Login', new_user_session_path, class: 'text-white mr-4' %></div>
+          <div><%= link_to 'Sign up', new_user_registration_path, class: 'text-white' %></div>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="text-center">
+      <p class="text-green-600"><%= notice %></p>
+      <p class="text-red-600"><%= alert %></p>
+    </div>
     <%= yield %>
+  </div>
+
   </body>
 </html>

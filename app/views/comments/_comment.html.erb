@@ -1,8 +1,16 @@
-<% unless comment.archived? %>
-  <div class="bg-gray-100 rounded-md p-4 mb-4">
-    <p class="text-gray-800"><strong><%= comment.commenter %></strong> <%= comment.body %></p>
-    <div class="mt-2">
-      <%= link_to "Delete Comment", [comment.blog_post, comment], method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'text-red-500 hover:underline' %>
-    </div>
+<div>
+  <strong class="text-gray-800"><%= comment.user.username %>: </strong><%= comment.body %>
+</div>
+<% if comment.user == current_user %>
+  <div class="mt-2">
+    <small>
+      <%= link_to "Delete", [comment.blog_post, comment],
+                  data: { turbo_method: :delete,
+                          turbo_confirm: "Are you sure?" },
+                  class: 'text-red-500 hover:underline' %>
+    </small>
   </div>
 <% end %>
+
+
+
