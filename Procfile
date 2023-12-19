@@ -1,1 +1,1 @@
-web: bundle exec foreman start -p $PORT
+web: bundle exec puma -C config/puma.rb
